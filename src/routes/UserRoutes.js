@@ -5,5 +5,7 @@ let userRoutes = express.Router()
 
 userRoutes.get("/users", getAllUsers)
 userRoutes.post("/registeruser", addUser)
+userRoutes.put("/updateuser", updateUser)
+userRoutes.delete("/deleteuser", deleteUser)
 
 export { userRoutes }

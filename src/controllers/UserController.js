@@ -24,7 +24,36 @@ let getAllUsers = async (req, res) => {
     }
 
 }
-let deleteUser = (req, res) => { }
-let updateUser = (req, res) => { }
+let deleteUser = async (req, res) => {
+    try {
+
+        let deletedUser = await User.findByIdAndDelete({
+            _id: req.body.userid
+        })
+        res.status(200).json(deletedUser)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+let updateUser = async (req, res) => {
+
+    try {
+        let updatedUser = await User.findByIdAndUpdate(
+            {
+                _id: req.body.userid
+            },
+            {
+                useremail: req.body.email
+            },
+            {
+                new: false
+            }
+        )
+
+        res.status(200).json(updatedUser)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
 
 export { addUser, updateUser, getAllUsers, deleteUser }
